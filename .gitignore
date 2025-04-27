@@ -1,0 +1,25 @@
+# Archivos de entorno
+.env
+
+# Archivos y directorios generados por Go
+/bin/
+/pkg/
+/vendor/
+*.exe
+*.test
+*.out
+
+# Archivos de configuración de IDE
+.idea/
+.vscode/
+*.iml
+
+# Archivos y directorios generados por Docker
+docker-compose.override.yml
+docker-compose.override.yaml
+*.log
+*.tmp
+
+# Archivos del sistema operativo
+.DS_Store
+Thumbs.db

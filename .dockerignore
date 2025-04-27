@@ -1,0 +1,74 @@
+# Binarios y resultados de compilación
+/bin/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+main
+/build/
+
+# Archivos de prueba
+*_test.go
+/test/
+/tests/
+coverage.txt
+profile.out
+# Archivos y directorios de Git
+.git
+.gitignore
+
+# Directorios de dependencias
+vendor/
+node_modules/
+
+# Archivos de configuración local
+.env
+.env.local
+*.log
+
+# Archivos de compilación
+bin/
+build/
+dist/
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Archivos y directorios temporales
+tmp/
+temp/
+.tmp/
+*.tmp
+
+# Archivos específicos de editores
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+# Control de versiones
+.git/
+.gitignore
+.github/
+
+# Archivos de entorno y configuración
+.env
+.env.*
+*.env
+*.log
+.DS_Store
+
+# Carpetas específicas de desarrollo
+/tmp/
+/vendor/
+/node_modules/
+/.idea/
+/.vscode/
+
+# Documentación y otros archivos
+/README.md
+/docs/
+/examples/

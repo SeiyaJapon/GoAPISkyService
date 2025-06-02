@@ -20,7 +20,7 @@ func InitializeApp() (*AppConfig, error) {
 
 	dbConfig, err := GetDBConfig()
 	if err != nil {
-		return nil, fmt.Errorf("failed to load database config: %v", err)
+		return nil, fmt.Errorf("failed to load database bootstrap: %v", err)
 	}
 
 	db, err := dbConfig.ConnectDB()

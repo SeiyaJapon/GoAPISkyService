@@ -1,7 +1,7 @@
 package main
 
 import (
-	"GoAPISkyService/internal/config"
+	"GoAPISkyService/internal/shared_context/config"
 	"database/sql"
 	"github.com/joho/godotenv"
 	"log"

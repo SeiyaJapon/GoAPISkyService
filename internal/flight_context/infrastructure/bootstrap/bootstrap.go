@@ -30,7 +30,6 @@ func InitDependencies() (*AppDependencies, error) {
 		)
 	}
 
-	// Registrar todas las queries
 	for _, registration := range cqrs.QueryHandlers {
 		queryBus.RegisterHandler(
 			reflect.TypeOf(registration.Query),

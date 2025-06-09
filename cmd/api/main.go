@@ -1,16 +1,9 @@
 package main
 
 import (
-	"GoAPISkyService/internal/shared_context/config"
-	"database/sql"
 	"github.com/joho/godotenv"
-	"log"
-	"net/http"
-	"os"
-	"time"
-
-	"github.com/gin-gonic/gin"
 	_ "github.com/lib/pq"
+	"log"
 )
 
 func init() {
@@ -20,64 +13,67 @@ func init() {
 }
 
 func main() {
-	gin.SetMode(gin.ReleaseMode)
-	r := gin.New()
+	/*
+		gin.SetMode(gin.ReleaseMode)
+		r := gin.New()
 
-	r.Use(gin.Logger())
-	r.Use(gin.Recovery())
+		r.Use(gin.Logger())
+		r.Use(gin.Recovery())
 
-	log.Printf("Conectando a PostgreSQL en %s:%s", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"))
+		log.Printf("Conectando a PostgreSQL en %s:%s", os.Getenv("DB_HOST"), os.Getenv("DB_PORT"))
 
-	db, err := config.InitializeApp()
-	if err != nil {
-		log.Fatalf("Error fatal conectando a PostgreSQL: %v", err)
-	}
-
-	log.Println("Conexión exitosa a PostgreSQL")
-
-	defer func(db *sql.DB) {
-		err := db.Close()
+		db, err := config.InitializeApp()
 		if err != nil {
-			log.Printf("Error al cerrar la conexión con PostgreSQL: %v", err)
+			log.Fatalf("Error fatal conectando a PostgreSQL: %v", err)
 		}
-	}(db.DB)
 
-	r.GET("/health", func(c *gin.Context) {
-		dbStatus := false
-		var dbError string
+		log.Println("Conexión exitosa a PostgreSQL")
 
-		if db != nil && db.DB != nil {
-			err := db.DB.Ping()
+		defer func(db *sql.DB) {
+			err := db.Close()
 			if err != nil {
-				dbError = err.Error()
+				log.Printf("Error al cerrar la conexión con PostgreSQL: %v", err)
 			}
-			dbStatus = err == nil
-		} else {
-			dbError = "db instance is nil"
+		}(db.DB)
+
+		r.GET("/health", func(c *gin.Context) {
+			dbStatus := false
+			var dbError string
+
+			if db != nil && db.DB != nil {
+				err := db.DB.Ping()
+				if err != nil {
+					dbError = err.Error()
+				}
+				dbStatus = err == nil
+			} else {
+				dbError = "db instance is nil"
+			}
+
+			c.JSON(http.StatusOK, gin.H{
+				"http_status": "ok",
+				"postgres":    dbStatus,
+				"db_error":    dbError,
+				"timestamp":   time.Now().Unix(),
+			})
+		})
+
+		r.GET("/", func(c *gin.Context) {
+			c.JSON(http.StatusOK, gin.H{
+				"message": "API Go funcionando correctamente",
+				"time":    time.Now().Format(time.RFC3339),
+			})
+		})
+
+		port := os.Getenv("PORT")
+		if port == "" {
+			port = "8080"
 		}
 
-		c.JSON(http.StatusOK, gin.H{
-			"http_status": "ok",
-			"postgres":    dbStatus,
-			"db_error":    dbError,
-			"timestamp":   time.Now().Unix(),
-		})
-	})
+		log.Printf("Servidor iniciado en el puerto %s", port)
+		if err := r.Run(":" + port); err != nil {
+			log.Fatalf("Error al iniciar el servidor: %v", err)
+		}
+	*/
 
-	r.GET("/", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "API Go funcionando correctamente",
-			"time":    time.Now().Format(time.RFC3339),
-		})
-	})
-
-	port := os.Getenv("PORT")
-	if port == "" {
-		port = "8080"
-	}
-
-	log.Printf("Servidor iniciado en el puerto %s", port)
-	if err := r.Run(":" + port); err != nil {
-		log.Fatalf("Error al iniciar el servidor: %v", err)
-	}
 }

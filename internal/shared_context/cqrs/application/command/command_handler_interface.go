@@ -1,5 +1,5 @@
 package command
 
 type CommandHandlerInterface interface {
-	Handler(command CommandInterface) error
+	Handle(command CommandInterface) error
 }
